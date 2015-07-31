@@ -2,6 +2,7 @@ var gulp   = require("gulp");
 var babel  = require("gulp-babel");
 var server = require('gulp-server-livereload');
 var rimraf = require('gulp-rimraf');
+var jshint = require('gulp-jshint');
 
 var paths = {
   babel: './lib/**',
@@ -26,6 +27,14 @@ gulp.task('clean', function() {
   }).pipe(rimraf({
     force: true
   }));
+});
+
+gulp.task('lint', function() {
+  return gulp.src([paths.babel, paths.examples])
+    .pipe(jshint({
+      linter: require('jshint-jsx').JSXHINT
+    }))
+    .pipe(jshint.reporter('default'));
 });
 
 gulp.task('server', function() {

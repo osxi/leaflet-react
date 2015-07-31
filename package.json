@@ -1,7 +1,7 @@
 {
   "name": "leaflet-react",
   "version": "0.0.1",
-  "description": "leaflet map components in react",
+  "description": "React components for Leaflet maps",
   "main": "gulpfile.js",
   "directories": {
     "example": "examples"
@@ -20,8 +20,10 @@
     "gulp": "^3.9.0",
     "gulp-babel": "^5.2.0",
     "gulp-es6-transpiler": "^1.0.1",
+    "gulp-jshint": "^1.11.2",
     "gulp-rimraf": "^0.1.1",
     "gulp-server-livereload": "^1.4.0",
+    "jshint-jsx": "^0.4.1",
     "react": "^0.13.3"
   }
 }

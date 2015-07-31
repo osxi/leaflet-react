@@ -1,0 +1,9 @@
+{
+  "esnext": true,
+  "globalstrict": true,
+  "globals": {
+    "React": false,
+    "L": false,
+    "$": false
+  }
+}

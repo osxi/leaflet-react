@@ -4,25 +4,28 @@ var server = require('gulp-server-livereload');
 var rimraf = require('gulp-rimraf');
 var jshint = require('gulp-jshint');
 
-var paths = {
-  babel: './lib/**',
-  examples: './examples/**.js'
+var path = {
+  in: {
+    lib: "./lib/**/*.js",
+    dist: "./dist/**/*.js",
+    examples: "./examples/**/*.{html,js}"
+  },
+  out: {
+    dist: "./dist",
+    examples: "./examples"
+  }
 };
 
 gulp.task('babel', function() {
-  return gulp.src([paths.babel, paths.examples])
+  return gulp.src(path.in.lib)
     .pipe(babel())
-    .pipe(gulp.dest('./dist'));
+    .pipe(gulp.dest(path.out.dist));
 });
 
-gulp.task('default', ['babel']);
-
-gulp.task('watch', function() {
-  gulp.watch(paths.babel, ['babel'])
-});
+gulp.task('default', ['server']);
 
 gulp.task('clean', function() {
-  return gulp.src('./dist/**', {
+  return gulp.src(path.out.dist, {
     read: false
   }).pipe(rimraf({
     force: true
@@ -30,15 +33,20 @@ gulp.task('clean', function() {
 });
 
 gulp.task('lint', function() {
-  return gulp.src([paths.babel, paths.examples])
+  return gulp.src([path.in.lib, path.in.examples])
     .pipe(jshint({
       linter: require('jshint-jsx').JSXHINT
     }))
     .pipe(jshint.reporter('default'));
 });
 
-gulp.task('server', function() {
-  gulp.src(['./examples/**', './dist/**'])
+gulp.task('server', ['babel', 'lint'], function() {
+  gulp.watch(path.in.lib, ['babel']);
+
+  gulp.watch([path.in.lib, path.in.examples], ['lint']);
+
+  path.out.examples, path.out.dist
+  gulp.src(["./examples/**", "./dist/**"])
     .pipe(server({
       livereload: true,
       open: true,

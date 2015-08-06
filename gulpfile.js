@@ -8,7 +8,7 @@ var path = {
   in: {
     lib: "./lib/**/*.js",
     dist: "./dist/**/*.js",
-    examples: "./examples/**/*.{html,js}"
+    examples: "./examples/**/*.js"
   },
   out: {
     dist: "./dist",

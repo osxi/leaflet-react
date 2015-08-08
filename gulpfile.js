@@ -45,7 +45,6 @@ gulp.task('server', ['babel', 'lint'], function() {
 
   gulp.watch([path.in.lib, path.in.examples], ['lint']);
 
-  path.out.examples, path.out.dist
   gulp.src(["./examples/**", "./dist/**"])
     .pipe(server({
       livereload: true,

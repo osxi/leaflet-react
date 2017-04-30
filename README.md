@@ -1,4 +1,6 @@
 # leaflet-react
+
+[![Greenkeeper badge](https://badges.greenkeeper.io/osxi/leaflet-react.svg)](https://greenkeeper.io/)
 React components for Leaflet maps.
 
 Usage
